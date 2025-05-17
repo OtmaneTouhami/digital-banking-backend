@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import ma.enset.digitalbanking.dtos.*;
 import ma.enset.digitalbanking.entities.*;
 import ma.enset.digitalbanking.enums.OperationType;
-import ma.enset.digitalbanking.mappers.BalanceNotSufficientException;
+import ma.enset.digitalbanking.exceptions.BalanceNotSufficientException;
 import ma.enset.digitalbanking.mappers.BankAccountMapperImpl;
-import ma.enset.digitalbanking.mappers.BankAccountNotFoundException;
-import ma.enset.digitalbanking.mappers.CustomerNotFoundException;
+import ma.enset.digitalbanking.exceptions.BankAccountNotFoundException;
+import ma.enset.digitalbanking.exceptions.CustomerNotFoundException;
 import ma.enset.digitalbanking.repositories.AccountOperationRepository;
 import ma.enset.digitalbanking.repositories.BankAccountRepository;
 import ma.enset.digitalbanking.repositories.CustomerRepository;
@@ -186,5 +186,12 @@ public class BankAccountServiceImpl implements BankAccountService {
         accountHistoryDTO.setPageSize(size);
         accountHistoryDTO.setTotalPages(accountOperations.getTotalPages());
         return accountHistoryDTO;
+    }
+
+    @Override
+    public List<CustomerDTO> searchCustomers(String keyword) {
+        List<Customer> customers=customerRepository.searchCustomer(keyword);
+        List<CustomerDTO> customerDTOS = customers.stream().map(cust -> dtoMapper.fromCustomer(cust)).collect(Collectors.toList());
+        return customerDTOS;
     }
 }

@@ -4,7 +4,7 @@ import ma.enset.digitalbanking.dtos.BankAccountDTO;
 import ma.enset.digitalbanking.dtos.CurrentBankAccountDTO;
 import ma.enset.digitalbanking.dtos.CustomerDTO;
 import ma.enset.digitalbanking.dtos.SavingBankAccountDTO;
-import ma.enset.digitalbanking.mappers.CustomerNotFoundException;
+import ma.enset.digitalbanking.exceptions.CustomerNotFoundException;
 import ma.enset.digitalbanking.services.BankAccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

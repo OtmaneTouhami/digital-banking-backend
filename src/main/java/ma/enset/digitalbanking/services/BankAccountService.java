@@ -1,9 +1,9 @@
 package ma.enset.digitalbanking.services;
 
 import ma.enset.digitalbanking.dtos.*;
-import ma.enset.digitalbanking.mappers.BalanceNotSufficientException;
-import ma.enset.digitalbanking.mappers.BankAccountNotFoundException;
-import ma.enset.digitalbanking.mappers.CustomerNotFoundException;
+import ma.enset.digitalbanking.exceptions.BalanceNotSufficientException;
+import ma.enset.digitalbanking.exceptions.BankAccountNotFoundException;
+import ma.enset.digitalbanking.exceptions.CustomerNotFoundException;
 
 import java.util.List;
 
@@ -35,4 +35,6 @@ public interface BankAccountService {
     List<AccountOperationDTO> accountHistory(String accountId);
 
     AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws BankAccountNotFoundException;
+
+    List<CustomerDTO> searchCustomers(String keyword);
 }
